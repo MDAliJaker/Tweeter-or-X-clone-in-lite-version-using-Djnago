@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    {% if user.is_authenticated %}
+    <h1>You're already logged-in -_- </h1>
+    {% else %}
+    <br><br><br>
+    <div class="col-md-6 offset-md-3">
+    <h1>Login</h1>
+    <form method="POST" accept="{% url 'login' %}">
+        {% csrf_token %}
+        <br>
+        <div class="mb-3">
+          <input type="text" class="form-control" name="username" placeholder="Enter Your Username"> 
+        </div>
+        <div class="mb-3">
+          <input type="password" class="form-control" placeholder="Enter Your Password" name="password">
+        </div>
+        <br><br>
+        <button type="submit" class="btn btn-secondary">Submit</button>
+      </form>
+
+    </div>
+    {% endif %}
+
+
+    {% endblock %}
+</body>
+</html>

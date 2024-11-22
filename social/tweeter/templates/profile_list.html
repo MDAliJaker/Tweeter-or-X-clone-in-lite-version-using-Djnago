@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% load static %}
+    {% block content %}
+  
+    <h1>Profie List:</h1>
+    <br/>
+    {% if profiles %}
+        {% for profile in profiles %}
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{% static 'images/pic.jpg'%}" class="img-fluid rounded-start" alt="Profile Photo">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ profile.user.username }}</h5>
+                  <p class="card-text">
+                    <a href="{% url 'profile' profile.user.id %}" style="text-decoration: none;"> @{{ profile.user.username | lower }}
+                    </a></p>
+                  <br><br><br>
+                  <p class="card-text"><small class="text-body-secondary">Last Update: {{ profile.date_modified }}</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br/><br/>
+
+        {% endfor %}    
+    {% endif %}
+
+    {% endblock %}
+
+</body>
+</html>
